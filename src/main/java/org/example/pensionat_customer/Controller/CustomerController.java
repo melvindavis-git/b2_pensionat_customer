@@ -1,8 +1,8 @@
-package org.example.backend1.Controller;
+package org.example.pensionat_customer.Controller;
 
 import jakarta.validation.Valid;
-import org.example.backend1.DTO.CustomerDTO;
-import org.example.backend1.Service.CustomerService;
+import org.example.pensionat_customer.DTO.CustomerDTO;
+import org.example.pensionat_customer.Service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;

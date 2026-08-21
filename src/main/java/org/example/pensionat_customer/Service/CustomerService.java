@@ -1,10 +1,10 @@
-package org.example.backend1.Service;
+package org.example.pensionat_customer.Service;
 
-import org.example.backend1.DTO.CustomerDTO;
-import org.example.backend1.Model.Booking;
-import org.example.backend1.Model.Customer;
-import org.example.backend1.Repository.BookingRepository;
-import org.example.backend1.Repository.CustomerRepository;
+import org.example.pensionat_customer.DTO.CustomerDTO;
+import org.example.pensionat_customer.Model.Booking;
+import org.example.pensionat_customer.Model.Customer;
+import org.example.pensionat_customer.Repository.BookingRepository;
+import org.example.pensionat_customer.Repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

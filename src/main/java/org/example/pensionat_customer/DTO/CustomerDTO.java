@@ -1,4 +1,4 @@
-package org.example.backend1.DTO;
+package org.example.pensionat_customer.DTO;
 
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;

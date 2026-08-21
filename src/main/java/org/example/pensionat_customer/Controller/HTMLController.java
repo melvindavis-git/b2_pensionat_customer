@@ -1,13 +1,13 @@
-package org.example.backend1.Controller;
+package org.example.pensionat_customer.Controller;
 
 
 import jakarta.validation.ConstraintViolationException;
-import org.example.backend1.DTO.BookingDTO;
-import org.example.backend1.DTO.RoomDTO;
-import org.example.backend1.Model.Customer;
-import org.example.backend1.Service.BookingService;
-import org.example.backend1.Service.CustomerService;
-import org.example.backend1.Service.RoomService;
+import org.example.pensionat_customer.DTO.BookingDTO;
+import org.example.pensionat_customer.DTO.RoomDTO;
+import org.example.pensionat_customer.Model.Customer;
+import org.example.pensionat_customer.Service.BookingService;
+import org.example.pensionat_customer.Service.CustomerService;
+import org.example.pensionat_customer.Service.RoomService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

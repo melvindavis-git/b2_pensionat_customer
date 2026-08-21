@@ -1,8 +1,8 @@
 package org.example.pensionat_customer.Controller;
 
-import org.example.backend1.DTO.BookingDTO;
-import org.example.backend1.DTO.RoomDTO;
-import org.example.backend1.Service.BookingService;
+import org.example.pensionat_customer.DTO.BookingDTO;
+import org.example.pensionat_customer.DTO.RoomDTO;
+import org.example.pensionat_customer.Service.BookingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;

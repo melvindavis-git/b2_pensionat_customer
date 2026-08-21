@@ -1,8 +1,8 @@
-package org.example.backend1.Service;
+package org.example.pensionat_customer.Service;
 
-import org.example.backend1.DTO.RoomDTO;
-import org.example.backend1.Model.Room;
-import org.example.backend1.Repository.RoomRepository;
+import org.example.pensionat_customer.DTO.RoomDTO;
+import org.example.pensionat_customer.Model.Room;
+import org.example.pensionat_customer.Repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

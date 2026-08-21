@@ -1,7 +1,7 @@
-package org.example.backend1.Controller;
+package org.example.pensionat_customer.Controller;
 
-import org.example.backend1.DTO.RoomDTO;
-import org.example.backend1.Service.RoomService;
+import org.example.pensionat_customer.DTO.RoomDTO;
+import org.example.pensionat_customer.Service.RoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.GetMapping;
