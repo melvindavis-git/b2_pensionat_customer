@@ -1,10 +1,11 @@
 package org.example.pensionat_customer.Service;
 
 import org.example.pensionat_customer.DTO.CustomerDTO;
-import org.example.pensionat_customer.Model.Booking;
 import org.example.pensionat_customer.Model.Customer;
-import org.example.pensionat_customer.Repository.BookingRepository;
 import org.example.pensionat_customer.Repository.CustomerRepository;
+import org.springdoc.core.converters.ResponseSupportConverter;
+import org.springdoc.core.service.GenericResponseService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,11 +15,14 @@ import java.util.Objects;
 public class CustomerService {
 
     private final CustomerRepository customerRepo;
-    private final BookingRepository bookingRepo;
+    private final GenericResponseService responseBuilder;
+    private final ResponseSupportConverter responseSupportConverter;
 
-    public CustomerService(CustomerRepository customerRepo, BookingRepository bookingRepo, BookingRepository bookingRepo1) {
+
+    public CustomerService(CustomerRepository customerRepo, GenericResponseService responseBuilder, ResponseSupportConverter responseSupportConverter) {
         this.customerRepo = customerRepo;
-        this.bookingRepo = bookingRepo;
+        this.responseBuilder = responseBuilder;
+        this.responseSupportConverter = responseSupportConverter;
     }
 
     public List<CustomerDTO> getAllCustomers() {
@@ -39,19 +43,22 @@ public class CustomerService {
         return CustomerToCustomerDTO(newCustomer);
     }
 
-    public CustomerDTO deleteById(Long customerId) {
+    public boolean deleteById(Long customerId) {
 
-        Customer deletedCustomer = customerRepo.findById(customerId).orElseThrow(() ->
-                new RuntimeException("Kunden hittades ej."));
+        Customer deletedCustomer = customerRepo.findById(customerId).orElse(null);
+
+        //SKA SKICKA TILL BOOKING
+
+        if(deletedCustomer==null){
+            return false;
+        }
+
+        //Måste ge errorkod senare
+        //FIXA
         CustomerDTO deletedCustomerDTO = CustomerToCustomerDTO(deletedCustomer);
 
-        for (Booking booking : bookingRepo.findAll()) {
-            if (booking.getCustomer().getId().equals(customerId)) {
-                throw new RuntimeException(customerRepo.findById(customerId).get().getName() + " har en bokning.");
-            }
-        }
         customerRepo.deleteById(customerId);
-        return deletedCustomerDTO;
+        return true;
     }
 
     public CustomerDTO getCustomerById(Long id) {
@@ -67,5 +74,7 @@ public class CustomerService {
         customerRepo.save(editedCustomer);
         return CustomerToCustomerDTO(editedCustomer);
     }
+
+
 
 }
