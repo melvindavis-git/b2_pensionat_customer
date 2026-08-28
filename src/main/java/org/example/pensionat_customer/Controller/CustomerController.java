@@ -20,7 +20,7 @@ public class CustomerController {
         this.service = service;
     }
 
-    @GetMapping()
+    @GetMapping("/all")
     public List<CustomerDTO> getAllCustomers() {
         log.info("GET request for all customers");
         List<CustomerDTO> customers = service.getAllCustomers();
