@@ -40,6 +40,13 @@ public class CustomerController {
         return service.registerCustomer(customerDTO);
     }
 
+    @PutMapping("/editCst")
+    public CustomerDTO editCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+        log.info("POST request to register customer");
+        log.info("Customer {} registered successfully", customerDTO.getName());
+        return service.editCst(customerDTO);
+    }
+
     @DeleteMapping("/delete/{id}")
     public boolean deleteById(@PathVariable Long id) {
         log.info("DELETE request to delete customer");

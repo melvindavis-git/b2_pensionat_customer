@@ -5,7 +5,6 @@ import org.example.pensionat_customer.Model.Customer;
 import org.example.pensionat_customer.Repository.CustomerRepository;
 import org.springdoc.core.converters.ResponseSupportConverter;
 import org.springdoc.core.service.GenericResponseService;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -66,13 +65,11 @@ public class CustomerService {
     }
 
 
-    public CustomerDTO editById(Long customerId, String name, String email, String phone) {
-        Customer editedCustomer = customerRepo.findById(customerId).orElseThrow(() -> new RuntimeException("Kunden hittades ej"));
-        editedCustomer.setName(name);
-        editedCustomer.setEmail(email);
-        editedCustomer.setPhone(phone);
-        customerRepo.save(editedCustomer);
-        return CustomerToCustomerDTO(editedCustomer);
+    public CustomerDTO editCst(CustomerDTO cstToBeEdited) {
+
+        Customer cstToBeSaved = new Customer(cstToBeEdited.getId(), cstToBeEdited.getName(), cstToBeEdited.getEmail(), cstToBeEdited.getPhone());
+        customerRepo.save(cstToBeSaved);
+        return CustomerToCustomerDTO(cstToBeSaved);
     }
 
 
