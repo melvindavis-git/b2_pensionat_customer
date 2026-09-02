@@ -5,8 +5,11 @@ import org.example.pensionat_customer.Model.Customer;
 import org.example.pensionat_customer.Repository.CustomerRepository;
 import org.springdoc.core.converters.ResponseSupportConverter;
 import org.springdoc.core.service.GenericResponseService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -60,16 +63,27 @@ public class CustomerService {
         return true;
     }
 
-    public CustomerDTO getCustomerById(Long id) {
-        return CustomerToCustomerDTO(Objects.requireNonNull(customerRepo.findById(id).orElse(null)));
+    public ResponseEntity<CustomerDTO> getCustomerById(Long id) {
+
+        if (customerRepo.findById(id).isEmpty()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
+
+        CustomerDTO customerToSend = CustomerToCustomerDTO(customerRepo.findById(id).orElse(null));
+            return ResponseEntity.status(HttpStatus.OK).body(customerToSend);
+
     }
 
 
-    public CustomerDTO editCst(CustomerDTO cstToBeEdited) {
+    public ResponseEntity <CustomerDTO> editCst(CustomerDTO cstToBeEdited) {
+
+        if (customerRepo.findById(cstToBeEdited.getId()).isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(cstToBeEdited);
+        }
 
         Customer cstToBeSaved = new Customer(cstToBeEdited.getId(), cstToBeEdited.getName(), cstToBeEdited.getEmail(), cstToBeEdited.getPhone());
         customerRepo.save(cstToBeSaved);
-        return CustomerToCustomerDTO(cstToBeSaved);
+        return ResponseEntity.status(HttpStatus.OK).body(CustomerToCustomerDTO(cstToBeSaved));
     }
 
 

@@ -5,6 +5,7 @@ import org.example.pensionat_customer.DTO.CustomerDTO;
 import org.example.pensionat_customer.Service.CustomerService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,7 +30,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-    public CustomerDTO getCustomerById(@PathVariable Long id){
+    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable Long id){
         return service.getCustomerById(id);
     }
 
@@ -41,9 +42,8 @@ public class CustomerController {
     }
 
     @PutMapping("/editCst")
-    public CustomerDTO editCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
-        log.info("POST request to register customer");
-        log.info("Customer {} registered successfully", customerDTO.getName());
+    public ResponseEntity<CustomerDTO> editCustomer(@Valid @RequestBody CustomerDTO customerDTO) {
+
         return service.editCst(customerDTO);
     }
 
