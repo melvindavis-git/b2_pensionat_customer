@@ -17,14 +17,10 @@ import java.util.Objects;
 public class CustomerService {
 
     private final CustomerRepository customerRepo;
-    private final GenericResponseService responseBuilder;
-    private final ResponseSupportConverter responseSupportConverter;
 
 
-    public CustomerService(CustomerRepository customerRepo, GenericResponseService responseBuilder, ResponseSupportConverter responseSupportConverter) {
+    public CustomerService(CustomerRepository customerRepo) {
         this.customerRepo = customerRepo;
-        this.responseBuilder = responseBuilder;
-        this.responseSupportConverter = responseSupportConverter;
     }
 
     public List<CustomerDTO> getAllCustomers() {
@@ -49,15 +45,9 @@ public class CustomerService {
 
         Customer deletedCustomer = customerRepo.findById(customerId).orElse(null);
 
-        //SKA SKICKA TILL BOOKING
-
         if(deletedCustomer==null){
             return false;
         }
-
-        //Måste ge errorkod senare
-        //FIXA
-        CustomerDTO deletedCustomerDTO = CustomerToCustomerDTO(deletedCustomer);
 
         customerRepo.deleteById(customerId);
         return true;
